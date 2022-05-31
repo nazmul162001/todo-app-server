@@ -35,4 +35,22 @@ route.delete('/:id', async(req,res)=> {
   }
 })
 
+// update todo
+route.put('/id', async(req,res)=> {
+  try{
+    const updateTodo = await Todo.updateOne(
+      {_id: req.params.id},
+      {
+        $set: {
+          todoTask: req.body.todoTask
+        }
+      }
+    )
+    res.send(updateTodo);
+  }
+  catch(error){
+    res.send({error: error.message})
+  }
+})
+
 export default route;
