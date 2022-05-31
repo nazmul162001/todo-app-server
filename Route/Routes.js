@@ -49,4 +49,15 @@ route.put('/:id', async (req, res) => {
   }
 });
 
+// complete todo
+route.put('/:id', async(req,res)=> {
+  try{
+    const completeTodo = await Todo.findByIdAndUpdate(req.params.id, req.body);
+    res.send(completeTodo);
+  }
+  catch(error){
+    res.send({error: error.message})
+  }
+})
+
 export default route;
