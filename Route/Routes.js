@@ -13,6 +13,16 @@ route.post('/', async(req,res)=> {
   }
 })
 
+// get todo
+route.get('/', async(req,res)=> {
+  try{
+    const getTodo = await Todo.findOne();
+    res.send(getTodo);
+  }
+  catch(error){
+    res.send({error:error.message})
+  }
+})
 
 
 export default route;
