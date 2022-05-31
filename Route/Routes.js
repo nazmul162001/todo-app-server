@@ -24,5 +24,15 @@ route.get('/', async(req,res)=> {
   }
 })
 
+// delete todo
+route.delete('/:id', async(req,res)=> {
+  try{
+    const deleteTodo = await Todo.findByIdAndDelete(req.params.id);
+    res.send(deleteTodo)
+  }
+  catch(error){
+    res.send({error: error.message})
+  }
+})
 
 export default route;
